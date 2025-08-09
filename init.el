@@ -169,6 +169,11 @@
   :ensure t
   :commands (eglot eglot-ensure)
   :config
+  (setq-default eglot-workspace-configuration
+                '((haskell
+                   (plugin
+                    (stan
+                     (globalOn . :json-false))))))  ;; disable stan
   (add-to-list 'eglot-server-programs
 	       '(purescript-mode . ("purescript-language-server" "--stdio"))))
 
@@ -204,6 +209,11 @@
   :ensure t)
 
 (use-package haskell-mode
+  :ensure t
+  :hook
+  ((haskell-mode . eglot-ensure)))
+
+(use-package consult-hoogle
   :ensure t)
 
 (use-package ormolu
