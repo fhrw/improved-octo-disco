@@ -169,6 +169,7 @@
   :ensure t
   :commands (eglot eglot-ensure)
   :config
+  (setq eldoc-idle-delay 0.1) ;; refresh time for lsp
   (setq-default eglot-workspace-configuration
                 '((haskell
                    (plugin
@@ -217,7 +218,8 @@
   :ensure t)
 
 (use-package ormolu
-  :ensure t)
+  :ensure t
+  :hook (haskell-mode . ormolu-format-on-save-mode))
 
 (use-package purescript-mode
   :ensure t
