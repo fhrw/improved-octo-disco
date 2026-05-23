@@ -1,5 +1,3 @@
-;;; init.el --- Emacs configuration
-
 ;;; Package archives
 (require 'package)
 (setq package-archives
@@ -18,7 +16,7 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
-(load-theme 'modus-vivendi-deuteranopia t)
+(load-theme 'modus-operandi-deuteranopia t)
 (global-auto-revert-mode +1)
 
 ;; Set default font to Iosevka
@@ -170,6 +168,7 @@
   :commands (eglot eglot-ensure)
   :config
   (setq eldoc-idle-delay 0.1) ;; refresh time for lsp
+  (setq project-vc-extra-root-markers '("spago.dhall" "go.mod"))
   (setq-default eglot-workspace-configuration
                 '((haskell
                    (plugin
@@ -227,6 +226,14 @@
   :hook
   ((purescript-mode . turn-on-purescript-indentation)
    (purescript-mode . eglot-ensure)))
+
+(use-package elm-mode
+  :ensure t
+  :hook
+  (elm-mode . elm-indent-simple-mode))
+
+(use-package magit
+  :ensure t)
 
 (provide 'init)
 ;;; init.el ends here
